@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import by.training.rssreader.R
 import by.training.rssreader.entity.NewsChannel
 
-class ChannelAdapter : RecyclerView.Adapter<ChannelViewHolder>() {
+class ChannelAdapter(val clickListener: (news: NewsChannel) -> Unit) : RecyclerView.Adapter<ChannelViewHolder>() {
 
     private var channels = mutableListOf<NewsChannel>()
 
@@ -18,6 +18,9 @@ class ChannelAdapter : RecyclerView.Adapter<ChannelViewHolder>() {
 
     override fun onBindViewHolder(holder: ChannelViewHolder, position: Int) {
         holder.bind(channels[position])
+        holder.itemView.setOnClickListener {
+            clickListener(channels[position])
+        }
     }
 
     override fun getItemCount(): Int {
