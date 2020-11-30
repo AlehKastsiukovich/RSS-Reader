@@ -1,18 +1,17 @@
 package by.training.rssreader.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.training.rssreader.R
 import by.training.rssreader.adapter.NewsAdapter
-import by.training.rssreader.api.API_KEY
-import by.training.rssreader.api.NewsService
-import by.training.rssreader.entity.Data
+import by.training.rssreader.api.*
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_news.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.lang.IllegalArgumentException
 
 class NewsActivity : AppCompatActivity() {
 
@@ -37,25 +36,38 @@ class NewsActivity : AppCompatActivity() {
     }
 
     private fun getCountryName(): String {
-        return intent.extras?.get("COUNTRY").toString()
+        Log.d("TAG", intent.extras?.get(COUNTRY_NAME).toString())
+        return intent.extras?.get(COUNTRY_NAME).toString()
     }
 
     private fun chooseCountry(country: String) {
-        NewsService.ServiceInitializerFactory
+        val query = countryHandler(country)
+        val result = NewsService.ServiceInitializerFactory
             .getNewsInstance()
-            .getNews(country = country, apiKey = API_KEY)
-            .enqueue(object : Callback<Data> {
-                override fun onResponse(call: Call<Data>, response: Response<Data>) {
-                    newsAdapter.setData(response.body()?.articles)
-                }
-
-                override fun onFailure(call: Call<Data>, t: Throwable) {
+            .getNews(country = query, apiKey = API_KEY)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                {
+                    Log.d("TAG", it.articles[0].title)
+                    newsAdapter.setData(it.articles)
+                },
+                {
                     Toast.makeText(
-                        this@NewsActivity,
-                        "Sorry, we have internet issues, try later",
+                        this,
+                        "Cant upload data!",
                         Toast.LENGTH_LONG
                     ).show()
                 }
-            })
+            )
+    }
+
+    private fun countryHandler(country: String): String {
+        return when (country) {
+            COUNTRY_US -> "us"
+            COUNTRY_CA -> "ca"
+            COUNTRY_RUS -> "ru"
+            else -> throw IllegalArgumentException()
+        }
     }
 }
