@@ -23,7 +23,6 @@ class NewsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
         Glide
             .with(holder.itemView.context)
             .load(data[position].urlToImage)
-            .placeholder(R.drawable.ic_launcher_background)
             .centerCrop()
             .into(holder.newsImage)
 

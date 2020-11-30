@@ -10,13 +10,13 @@ import retrofit2.http.Query
 
 const val BASE_URL = "https://newsapi.org"
 const val API_KEY = "d1e4c2411b604f39a8337382cd33bb71"
-const val COUNTRY_US = "United States news"
-const val COUNTRY_CA = "Canada news"
-const val COUNTRY_RUS = "Russia news"
+const val COUNTRY_US = "us"
+const val COUNTRY_CA = "ca"
+const val COUNTRY_RUS = "ru"
 
 interface NewsService {
 
-    @GET("/v2/top-headlines&key=&$API_KEY")
+    @GET("/v2/top-headlines?apiKey=$API_KEY")
     fun getNews(@Query("country") country: String): Observable<Data>
 
     object ServiceInitializerFactory {
