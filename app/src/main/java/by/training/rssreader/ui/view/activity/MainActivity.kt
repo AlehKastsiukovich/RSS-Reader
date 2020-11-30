@@ -1,16 +1,16 @@
-package by.training.rssreader.activity
+package by.training.rssreader.ui.view.activity
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.training.rssreader.R
-import by.training.rssreader.adapter.ChannelAdapter
-import by.training.rssreader.api.COUNTRY_CA
-import by.training.rssreader.api.COUNTRY_RUS
-import by.training.rssreader.api.COUNTRY_US
-import by.training.rssreader.entity.NewsChannel
-import kotlinx.android.synthetic.main.activity_main.*
+import by.training.rssreader.data.api.COUNTRY_CA
+import by.training.rssreader.data.api.COUNTRY_RUS
+import by.training.rssreader.data.api.COUNTRY_US
+import by.training.rssreader.data.model.NewsChannel
+import by.training.rssreader.ui.adapter.ChannelAdapter
+import kotlinx.android.synthetic.main.activity_main.channelsRecyclerView
 
 const val COUNTRY_NAME = "COUNTRY"
 

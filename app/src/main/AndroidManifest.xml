@@ -11,9 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.RSSReader">
-        <activity android:name=".activity.NewsActivity"
-            android:parentActivityName=".activity.MainActivity"/>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name="by.training.rssreader.ui.view.activity.NewsActivity"
+            android:parentActivityName="by.training.rssreader.ui.view.activity.MainActivity"/>
+        <activity android:name="by.training.rssreader.ui.view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

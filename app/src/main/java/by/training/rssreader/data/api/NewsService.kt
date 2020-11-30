@@ -1,6 +1,6 @@
-package by.training.rssreader.api
+package by.training.rssreader.data.api
 
-import by.training.rssreader.entity.Data
+import by.training.rssreader.data.model.Data
 import io.reactivex.Observable
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -16,11 +16,8 @@ const val COUNTRY_RUS = "Russia news"
 
 interface NewsService {
 
-    @GET("/v2/top-headlines")
-    fun getNews(
-        @Query("country") country: String,
-        @Query("apiKey") apiKey: String
-    ): Observable<Data>
+    @GET("/v2/top-headlines&key=&$API_KEY")
+    fun getNews(@Query("country") country: String): Observable<Data>
 
     object ServiceInitializerFactory {
         fun getNewsInstance(): NewsService {

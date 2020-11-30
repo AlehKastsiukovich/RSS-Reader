@@ -1,4 +1,4 @@
-package by.training.rssreader.adapter
+package by.training.rssreader.ui.adapter
 
 import android.view.View
 import android.widget.ImageView

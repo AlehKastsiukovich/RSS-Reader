@@ -1,10 +1,10 @@
-package by.training.rssreader.adapter
+package by.training.rssreader.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import by.training.rssreader.R
-import by.training.rssreader.entity.Article
+import by.training.rssreader.data.model.Article
 import com.bumptech.glide.Glide
 
 class NewsAdapter : RecyclerView.Adapter<CustomViewHolder>() {
