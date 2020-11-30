@@ -1,12 +1,12 @@
 package by.training.rssreader.util
 
 data class Resource<out T>(
-    private val status: Status,
-    private val data: T?,
-    private val message: String?
+    val status: Status,
+    val data: T?,
+    val message: String?
 ) {
     companion object {
-        fun <T> success(data: T?): Resource<T> {
+        fun <T> success(data: T): Resource<T> {
             return Resource(Status.SUCCESS, data, null)
         }
 

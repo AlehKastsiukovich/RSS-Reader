@@ -12,8 +12,6 @@ import by.training.rssreader.data.model.NewsChannel
 import by.training.rssreader.ui.adapter.ChannelAdapter
 import kotlinx.android.synthetic.main.activity_main.channelsRecyclerView
 
-const val COUNTRY_NAME = "COUNTRY"
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var channelsAdapter: ChannelAdapter
@@ -21,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setUpRecyclerView()
     }
 
@@ -49,8 +46,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val CA_URL = "https://images.dailyhive.com/20190122132035/shutterstock_533849170.jpg"
-        const val RU_URL = "https://www.globalconstructionreview.com/client_media/images/russ_1.jpg"
-        const val USA_URL = "https://as01.epimg.net/en/imagenes/2020/05/02/other_sports/1588371859_519106_1588419306_noticia_normal.jpg"
+        private const val CA_URL = "https://images.dailyhive.com/20190122132035/shutterstock_533849170.jpg"
+        private const val RU_URL = "https://www.globalconstructionreview.com/client_media/images/russ_1.jpg"
+        private const val USA_URL = "https://as01.epimg.net/en/imagenes/2020/05/02/other_sports/1588371859_519106_1588419306_noticia_normal.jpg"
+        const val COUNTRY_NAME = "COUNTRY"
     }
 }

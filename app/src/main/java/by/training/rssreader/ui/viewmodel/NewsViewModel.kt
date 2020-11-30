@@ -1,5 +1,6 @@
 package by.training.rssreader.ui.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import by.training.rssreader.data.api.NewsService
@@ -20,6 +21,10 @@ class NewsViewModel(private val country: String) : ViewModel() {
     init {
         repository = BaseRepository(api)
         fetchData()
+    }
+
+    fun getResource(): LiveData<Resource<Data>> {
+        return resource
     }
 
     private fun fetchData() {
